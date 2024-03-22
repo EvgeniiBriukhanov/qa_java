@@ -18,6 +18,8 @@ public class Lion {
 
     Feline feline = new Feline();
 
+    Predator predator;
+
     public int getKittens() {
         return feline.getKittens();
     }
