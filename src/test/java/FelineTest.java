@@ -1,7 +1,6 @@
 import com.example.Feline;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -15,9 +14,6 @@ public class FelineTest {
 
     Feline feline = new Feline();
 
-    @Mock
-    private Feline felineMock;
-
     @Spy
     private Feline felineSpy;
 
@@ -27,6 +23,7 @@ public class FelineTest {
         felineSpy.eatMeat();
         Mockito.verify(felineSpy, Mockito.times(1)).getFood("Хищник");
     }
+
     @Test
     public void eatMeatTest() throws Exception {
         feline.eatMeat();
@@ -34,9 +31,9 @@ public class FelineTest {
     }
 
     @Test
-    public void getFamilyTest(){
+    public void getFamilyTest() {
         feline.getFamily();
-        assertEquals("Кошачьи",feline.getFamily());
+        assertEquals("Кошачьи", feline.getFamily());
     }
 
     @Test
@@ -46,15 +43,13 @@ public class FelineTest {
     }
 
     @Test
-    public void getKittensTest(){
-        felineMock.getKittens();
-        Mockito.when(felineMock.getKittens()).thenReturn(10);
-        System.out.println(felineMock.getKittens());
+    public void getKittensTest() {
+        feline.getKittens();
+        assertEquals(1, feline.getKittens());
     }
 
     @Test
     public void getKittensWithParametersTest() {
-        felineMock.getKittens(50);
-        Mockito.verify(felineMock).getKittens(Mockito.anyInt());
+        assertEquals(50, feline.getKittens(50));
     }
 }

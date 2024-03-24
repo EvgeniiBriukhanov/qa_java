@@ -1,3 +1,4 @@
+import com.example.Feline;
 import com.example.Lion;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +21,7 @@ public class LionWithParameterizationTest {
         this.expectedGender = expectedGender;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters (name = "Test data: {gender}, {expectedGender}")
     public static Object[][] getGenderData() {
         return new Object[][]{
                 {"Самец", true},
@@ -32,7 +33,8 @@ public class LionWithParameterizationTest {
     @Test
     public void lionTest(){
         try {
-            Lion lion = new Lion(gender);
+            Feline feline = new Feline();
+            Lion lion = new Lion(gender, feline);
             lion.doesHaveMane();
             Assert.assertEquals(expectedGender, lion.doesHaveMane());
         } catch (Exception e) {
