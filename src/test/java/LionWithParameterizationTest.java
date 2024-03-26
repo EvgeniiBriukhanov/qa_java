@@ -21,7 +21,7 @@ public class LionWithParameterizationTest {
         this.expectedGender = expectedGender;
     }
 
-    @Parameterized.Parameters (name = "Test data: {gender}, {expectedGender}")
+    @Parameterized.Parameters (name = "Test data: {0}, {1}")
     public static Object[][] getGenderData() {
         return new Object[][]{
                 {"Самец", true},

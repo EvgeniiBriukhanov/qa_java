@@ -21,6 +21,6 @@ public class LionTest {
     @Test
     public void getFoodTest() throws Exception {
         lion.getFood();
-        Mockito.when(lion.getFood()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Mockito.verify(lion).getFood();
     }
 }
