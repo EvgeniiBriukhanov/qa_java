@@ -1,4 +1,6 @@
+import com.example.Feline;
 import com.example.Lion;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -12,6 +14,8 @@ public class LionTest {
     @Mock
     private Lion lion;
 
+    Feline feline = new Feline();
+
     @Test
     public void getKittensTest() {
         lion.getKittens();
@@ -21,6 +25,7 @@ public class LionTest {
     @Test
     public void getFoodTest() throws Exception {
         lion.getFood();
-        Mockito.verify(lion).getFood();
+        Mockito.when(lion.getFood()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Assert.assertEquals(feline.eatMeat(), lion.getFood());
     }
 }
