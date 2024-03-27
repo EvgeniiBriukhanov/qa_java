@@ -9,23 +9,37 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
     @Mock
-    private Lion lion;
+    private Lion lionMock;
 
     Feline feline = new Feline();
 
-    @Test
-    public void getKittensTest() {
-        lion.getKittens();
-        Mockito.verify(lion).getKittens();
+    Lion lion = new Lion("Самец",feline);
+
+    public LionTest() throws Exception {
     }
 
     @Test
+    public void getKittensMockTest() {
+        lionMock.getKittens();
+        Mockito.verify(lionMock).getKittens();
+    }
+    @Test
+    public void getKittensTest(){
+        assertEquals(1, lion.getKittens());
+    }
+    @Test
+    public void getFoodMockTest() throws Exception {
+        lionMock.getFood();
+        Mockito.when(lionMock.getFood()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Assert.assertEquals(feline.eatMeat(), lionMock.getFood());
+    }
+    @Test
     public void getFoodTest() throws Exception {
-        lion.getFood();
-        Mockito.when(lion.getFood()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Assert.assertEquals(feline.eatMeat(), lion.getFood());
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
     }
 }
