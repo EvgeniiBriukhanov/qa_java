@@ -24,22 +24,15 @@ public class LionTest {
     }
 
     @Test
-    public void getKittensMockTest() {
-        lionMock.getKittens();
-        Mockito.verify(lionMock).getKittens();
-    }
-    @Test
     public void getKittensTest(){
-        assertEquals(1, lion.getKittens());
+        lionMock.getKittens();
+        Mockito.when(lionMock.getKittens()).thenReturn(1);
+        assertEquals(lion.getKittens(),lionMock.getKittens());
     }
     @Test
     public void getFoodMockTest() throws Exception {
         lionMock.getFood();
         Mockito.when(lionMock.getFood()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Assert.assertEquals(feline.eatMeat(), lionMock.getFood());
-    }
-    @Test
-    public void getFoodTest() throws Exception {
-        assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
+        Assert.assertEquals(lion.getFood(), lionMock.getFood());
     }
 }
